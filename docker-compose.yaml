@@ -1,0 +1,23 @@
+version: "3.7"
+services:
+  mysql:
+    image: mysql:5.7.33
+    container_name: mysql-test
+    hostname: mysql
+    networks:
+      - default
+    volumes:
+      - test-db:/var/lib/mysql
+      - "./movie.dump:/docker-entrypoint-initdb.d/1.sql"
+    environment:
+      - MYSQL_USER=admin
+      - MYSQL_PASSWORD=secret
+      - MYSQL_ROOT_PASSWORD=jakarta-kebanjiran
+      - MYSQL_DATABASE=test
+    ports:
+      - "3306:3306"
+    command: mysqld --lower_case_table_names=1 --skip-ssl --character_set_server=utf8mb4 --explicit_defaults_for_timestamp
+    restart: always
+
+volumes: 
+  test-db:
