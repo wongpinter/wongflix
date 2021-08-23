@@ -11,6 +11,8 @@ $ cd wongflix
 
 $ docker compose up -d
 
+$ go mod tidy
+
 $ go run ./cmd
 ```
 
